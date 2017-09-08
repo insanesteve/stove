@@ -1,5 +1,5 @@
 public class Burner {
-	private enum Temperature {
+	public enum Temperature {
 		BLAZING, HOT, WARM, COLD
 	}
 
@@ -55,7 +55,7 @@ public class Burner {
 	public void updateTemperature(){
 		if (timer > 0) timer --;
 
-		else if (timer == 0){
+		if (timer == 0){
 			switch (myTemperature){
 			case COLD: 
 				if (mySetting == Setting.LOW){
@@ -105,6 +105,27 @@ public class Burner {
 
 		}
 
+	}
+
+	public void printStatus() {
+		System.out.print(mySetting + ".....");
+		switch(myTemperature){
+		case COLD:
+			System.out.println("cooool");
+			break;
+		case WARM:
+			System.out.println("warm");
+			break;
+		case HOT:
+			System.out.println("CAREFUL");
+			break;
+		case BLAZING:
+			System.out.println("VERY HOT! DON'T TOUCH");
+			break;
+		default:
+			break;
+		}
+		
 	}
 
 }

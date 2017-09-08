@@ -17,7 +17,13 @@ public class Stove {
 	 * You must write the following method
 	 */
 	public void displayStove() {
-
+		boolean tooHot = false;
+		for (Burner b: burners){
+			b.printStatus();
+			if(b.getTemperature() == Burner.Temperature.BLAZING)
+				tooHot = true;
+		}
+		if (tooHot) System.out.println("RED LIGHT - HOT BURNER ALERT");
 	}
 	
 	public void turnBurnersUp() {
