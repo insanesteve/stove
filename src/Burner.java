@@ -1,14 +1,23 @@
+/*	CSCI306: CO6 - Stove Exercise
+ *	AUTHORS: Stephen Agee and Easton Bornemeier
+ *	PURPOSE: This class defines a single burner, which contains various settings and attributes. Multiple burners can be used to model a stove.
+ */
+
 public class Burner {
+	//Define enum for temperature of burner
 	public enum Temperature {
 		BLAZING, HOT, WARM, COLD
 	}
-
+	//define constant for duration of time it takes to heat/cool the burner
 	public static final int TIME_DURATION = 2;
+	
+	
 	private Temperature myTemperature;
 	private Setting mySetting;
 	private int timer;
 
 	Burner (){
+		//burners are initially cold, off, and the timer is reset.
 		myTemperature = Temperature.COLD;
 		mySetting = Setting.OFF;
 		timer = 0;		
@@ -18,8 +27,11 @@ public class Burner {
 		return myTemperature;
 	}
 
+	
 	public void plusButton(){
+		//start the timer when set point changed
 		timer = TIME_DURATION;
+		//switch statement to set the burner to the proper next setting if turning the burner up
 		switch (mySetting){
 		case OFF:
 			mySetting = Setting.LOW;
@@ -36,7 +48,9 @@ public class Burner {
 	}
 
 	public void minusButton(){
+		//start the timer when set point changed
 		timer = TIME_DURATION;
+		//switch statement to set the burner to the proper next setting if turning the burner up
 		switch (mySetting){
 		case LOW:
 			mySetting = Setting.OFF;
@@ -53,10 +67,17 @@ public class Burner {
 	}
 
 	public void updateTemperature(){
+		//if the timer is above 0, we still need to wait
 		if (timer > 0) timer --;
-
+		
+		//if the timer is 0, we can implement the temperature changes
 		if (timer == 0){
 			switch (myTemperature){
+			/*
+			a switch statement for each current temperature
+			we also need to check to see what the setting is so the burner moves in the proper direction
+			these if statements, although long, should be make sense
+			*/
 			case COLD: 
 				if (mySetting == Setting.LOW){
 					myTemperature = Temperature.WARM;
@@ -108,6 +129,7 @@ public class Burner {
 	}
 
 	public void printStatus() {
+		//print the status using the correct format from the rubric
 		System.out.print(mySetting + ".....");
 		switch(myTemperature){
 		case COLD:

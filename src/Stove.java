@@ -14,7 +14,7 @@ public class Stove {
 	}
 	
 	/* 
-	 * You must write the following method
+	 * Wrote the following method to print out the proper temperature/warnings
 	 */
 	public void displayStove() {
 		boolean tooHot = false;
